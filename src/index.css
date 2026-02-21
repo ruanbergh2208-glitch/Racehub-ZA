@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 14% 4%;
+    --foreground: 0 0% 100%;
+    --card: 228 18% 8%;
+    --card-foreground: 0 0% 100%;
+    --popover: 228 18% 8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 100% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 228 10% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 228 10% 15%;
+    --muted-foreground: 220 9% 68%;
+    --accent: 0 100% 59%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.08;
+    --ring: 0 100% 59%;
+    --radius: 1.375rem;
+    --sidebar-background: 228 18% 8%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 100% 59%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 228 10% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 100% / 0.08;
+    --sidebar-ring: 0 100% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .race-card {
+    @apply relative w-full h-full rounded-[22px] overflow-hidden;
+    background: hsl(var(--card));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+  }
+  
+  .race-pill {
+    @apply inline-flex items-center px-4 h-[34px] rounded-full text-xs font-medium uppercase tracking-wider;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  
+  .race-pill-red {
+    @apply race-pill;
+    background: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+  }
+  
+  .race-heading {
+    @apply font-bold uppercase tracking-tight leading-none;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  
+  .race-label {
+    @apply text-xs font-medium uppercase tracking-wider;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+  
+  .accent-underline {
+    @apply relative inline-block;
+  }
+  
+  .accent-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-1 rounded-sm;
+    background: hsl(var(--accent));
+  }
+  
+  .noise-overlay {
+    @apply fixed inset-0 pointer-events-none z-50;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+  }
+  
+  .vignette-overlay {
+    @apply absolute inset-0 pointer-events-none;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+  }
+  
+  .gradient-overlay-left {
+    @apply absolute inset-0 pointer-events-none;
+    background: linear-gradient(to right, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.10) 100%);
+  }
+  
+  .gradient-overlay-bottom {
+    @apply absolute inset-0 pointer-events-none;
+    background: linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.20) 50%, transparent 100%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: white;
+}

@@ -1,0 +1,43 @@
+# Netlify configuration file
+# This tells Netlify how to build and deploy your site
+
+[build]
+  # The command to build your site
+  command = "npm run build"
+  
+  # The folder containing the built files
+  publish = "dist"
+
+[build.environment]
+  # Use Node.js version 20
+  NODE_VERSION = "20"
+
+# Handle SPA routing - redirect all paths to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Enable gzip and brotli compression for better performance
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.images]
+  compress = true
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
